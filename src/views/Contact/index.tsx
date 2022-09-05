@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 import { Container } from "./style";
 
-const Home: React.FC = () => {
+const Contact: React.FC = () => {
   return (
     <Container>
-      <h1>Home</h1>
+      <h1>Contact</h1>
       <Link
-        to='/contact'
+        to='/'
         style={{
           height: '16px',
           width: '50px',
@@ -18,9 +18,9 @@ const Home: React.FC = () => {
           textAlign: 'center',
           padding: '6px 12px',
         }}
-      >Contact</Link>
+      >Home</Link>
     </Container>
   );
 }
 
-export default Home;
+export default Contact;
