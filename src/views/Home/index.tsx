@@ -1,24 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Container } from "./style";
 
 const Home: React.FC = () => {
+  const [isLoad, setIsLoad] = useState(false);
+
   return (
     <Container>
-      <h1>Home</h1>
-      <Link
-        to='/contact'
-        style={{
-          height: '16px',
-          width: '50px',
-          backgroundColor: '#000',
-          borderRadius: '4px',
-          color: '#f4f4f5',
-          textAlign: 'center',
-          padding: '6px 12px',
-        }}
-      >Contact</Link>
+      {isLoad ? (
+        <>
+          <p>Carregando...</p>
+        </>
+      ) : (
+        <>
+          <h1>Home</h1>
+          <Link
+            to='/contact'
+            className='button-link'
+          >Contact</Link>
+        </>
+      )}
+
+      <button
+        className='button-change-state'
+        onClick={() => setIsLoad(!isLoad)}
+      >
+        Clique Aqui
+      </button>
     </Container>
   );
 }
