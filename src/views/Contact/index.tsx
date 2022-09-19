@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
+
+import { api } from "../../services/api";
 
 import { Container } from "./style";
 
@@ -11,45 +13,59 @@ interface IData {
 
 const Contact: React.FC = () => {
   const [data, setData] = useState<IData>({} as IData);
+  const [submit, setSubmit] = useState(false);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    api.post('/ggn8JQgXaacGJ1PGNROn', [], {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      }
+    })
+      .then(response => {
+        const { status } = response;
 
-    setData({
-      ...data,
-      name: event.currentTarget.user_name.value,
-      email: event.currentTarget.email.value,
-    });
-  }
+        if (status === 200) {
+          setSubmit(true);
+        }
+      });
+  }, [data]);
 
   return (
     <Container>
       <div className="form-wrapper">
         <h1>Contact</h1>
 
-        Name: {data ? data.name : ''}
-        <br />
-        Email: {data ? data.email : ''}
-
         <div className="card">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              id="user_name"
-              placeholder="Nome"
-            // onChange={e => setData({ ...data, name: e.target.value })}
-            />
-            <input
-              type="text"
-              id="email"
-              placeholder="Email"
-            // onChange={e => setData({ ...data, email: e.target.value })}
-            />
-            <input
-              type="submit"
-              value="Cadastrar"
-            />
-          </form>
+          {submit ? (
+            <div>
+              <h1>Obrigado pelo envio dos dados:</h1>
+              <p>Name: {data.name}</p>
+              <p>Email: {data.email}</p>
+            </div>
+
+          ) : (
+
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                id="user_name"
+                placeholder="Nome"
+                onChange={e => setData({ ...data, name: e.target.value })}
+              />
+              <input
+                type="text"
+                id="email"
+                placeholder="Email"
+                onChange={e => setData({ ...data, email: e.target.value })}
+              />
+              <input
+                type="submit"
+                value="Cadastrar"
+              />
+            </form>
+          )}
         </div>
 
         <Link
