@@ -9,23 +9,29 @@ export const Container = styled.div`
   width: 100%;
 
   .button-link {
-    height: 16px;
-    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    width: 80px;
     background-color: #000;
     border-radius: 4px;
     color: #f4f4f5;
     text-align: center;
     text-decoration: none;
-    padding: 6px 12px;
   }
 
   .button-change-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    width: 90px;
     background-color: #3371FF;
     border-color: #3371FF;
     border-radius: 4px;
     color: #f4f4f5;
     text-align: center;
-    padding: 6px 12px;
     margin-top: 20px;
   }
 `
