@@ -1,7 +1,7 @@
 import React, { useState, useCallback, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReactLoading from 'react-loading';
 import { toast } from 'react-toastify';
+import Loader from '../../components/Loader';
 import { Container } from './style';
 import { api } from '../../services/api';
 
@@ -36,11 +36,7 @@ const SignUp: React.FC = () => {
   }, [data, navigate]);
 
   if (load) {
-    return (
-      <Container>
-        <ReactLoading type='bars' color='#68DE5A' />
-      </Container>
-    );
+    return <Loader />;
   }
 
   return (
