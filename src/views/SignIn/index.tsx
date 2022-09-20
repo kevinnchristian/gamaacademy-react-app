@@ -26,7 +26,7 @@ const SignIn: React.FC = () => {
         setLoad(false);
         toast.success('Login realizado com sucesso!', {
           hideProgressBar: false,
-          onClose: () => navigate('/dashbord')
+          onClose: () => navigate('/dashboard')
         });
       })
       .catch(e => {

@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import PrivateRoutesApp from "./private.routes";
+
 import Home from "../views/Home";
 import Contact from "../views/Contact";
 import SignIn from "../views/SignIn";
@@ -15,7 +17,9 @@ const RoutesApp: React.FC = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route element={<PrivateRoutesApp />}>
+          <Route path='/dashboard' element={<Dashboard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
